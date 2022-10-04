@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>TweenMax demon</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <script src="minified/TweenMax.min.js"></script>
+        <script src="minified/sizzle.js"></script>
+        <style>
+        *{
+            margin:0;}
+            body{
+            font-family:Asap;
+            background-color:#1d1d1d;
+            color:white;
+            margin:0px;
+          }
+          #banner {
+            position:relative;
+            -webkit-backface-visibility:hidden;
+            width:100%;
+            height:350px;
+            background:#eeeeec;
+            overflow:hidden;
+            float:left;
+            color:#eeeeec;
+          }
+          .panel {
+            position:absolute;
+            width:100%;
+            height:350px;
+            overflow:hidden;
+
+          }
+          #panel1 {
+            background:
+                linear-gradient(90deg, #7E898F 0%, #636C75 100%),
+                radial-gradient(at top, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.55) 100%),
+                radial-gradient(at top, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.08) 63%);
+            background-blend-mode: multiply, screen;
+          }
+          #panel2 {
+            background: url(images/banner.jpg);
+            background-position: top;
+            background-size:75%;
+            background-repeat: no-repeat;
+          }
+          #panel1 h1 {
+            color: #ffffff;
+            position: relative;
+            font-size:32px;
+            line-height:340px;
+            text-align:center;
+            width:100%;
+          }
+          #panel2 h2{
+            margin: 0;
+            position: absolute;
+            top: 288px;
+            width: 100%;
+            font-size: 22px;
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            background: #220228;
+            background-blend-mode: multiply, screen;
+          }
+          #panel3 {
+            top:520px;
+          }
+          #panel3 #info{
+            position:absolute;
+            top:225px;
+            width:100%;
+            padding:10px;
+            height:225px;
+            background:
+                linear-gradient(90deg, #7E898F 0%, #636C75 100%),
+                radial-gradient(at top, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.55) 100%),
+                radial-gradient(at top, rgba(255, 255, 255, 0.50) 0%, rgba(0, 0, 0, 0.08) 63%);
+            background-blend-mode: multiply, screen;
+          }
+          #panel3 h1 {
+            right: 25px;
+            color: white;
+            font-size: 31px;
+            position: absolute;
+            background: #ff0082;
+            padding: 10px;
+            transform: rotate(9deg);
+            margin-top: -63px;
+          }
+          #panel3 h2 {
+            margin-left:35px;
+            font-size:22px;
+            font-weight:700;
+            letter-spacing: 1px;
+          }
+          #panel3 li {
+            font-weight:600;
+            position:relative;
+            margin-top:10px;
+            color: #eeeeec;
+          }
+          #panel3 #orderNow {
+            position:absolute;
+            top:60px;
+            right:55px;
+            background:#ff536a;
+            color:#fff;
+            font-size:16px;
+            font-weight:bold;
+            padding:10px;
+            border-radius:10px;
+            border: 4px solid transparent;
+            cursor:pointer;
+          }
+          #panel3 #orderNow:hover {
+            background:#f22843;
+            transition:all .3s;
+          }
+          /* --- stats --- */
+          #stats {
+            font-family: Signika Negative, Asap, sans-serif;
+            font-weight:300;
+            font-size:18px;
+            float:left;
+            color:#ddd;
+            margin-left:20px;
+          }
+          #stats div {
+            margin-bottom:10px;
+          }
+          #stats div span {
+            font-size:22px;
+            color:white;
+          }
+          #restart {
+            visibility:hidden;
+          }
+          a {
+            color: white;
+            text-decoration: auto;
+          }
+        </style>
+    </head>
+    <body>
+       <div id="banner">
+  <div class="panel" id="panel1">
+    <h1>Welcome Bonus</h1>
+  </div>
+  <div class="panel" id="panel2">
+    <h2>+++ 𝙑𝙊𝙎𝙇𝙊𝙏 +++</h2>
+  </div>
+  <div class="panel" id="panel3">
+    <div id="info">
+      <h1>₱100</h1>
+      <h2>Like, Share, Subscribe ₱100</h2>
+      <ul>
+        <li>Every new registration</li>
+        <li>Get ₱100 Bonus</li>
+      </ul>
+      <div id="orderNow"><a href="https://www.voslot.bet/?uagt=google2&path=root">JOIN NOW</a></div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+    var $ = Sizzle,
+    $panel1 = $("#panel1"),
+    $panel2 = $("#panel2"),
+    $panel3 = $("#panel3"),
+    $panel1Text = $("#panel1 h1"),
+    $panel2Text = $("#panel2 h2"),
+    $info = $("#info"),
+    $list = $("li"),
+    $orderNow = $("#orderNow"),
+    tl;
+
+var tl = new TimelineMax({delay:0.5, repeat:0, repeatDelay:2, onUpdate:updateStats, onRepeat:updateReps, onComplete:restart});
+
+//banner animation code (only 11 lines)
+
+ tl.from(panel1, 0.5, {autoAlpha:0})
+   .from($panel1Text, 0.5, {scale:0.5, autoAlpha:0, ease:Back.easeOut})
+   .set($panel2, {top:0}, "+=2")
+   .from($panel2, 0.2, {autoAlpha:0, scale:1.5})
+   .from($panel2Text, 0.2, {top:350}, "+=0.5")
+   .to($panel2Text, 0.2, {top:350}, "+=2")
+   .set($panel3, {top:0}, "final")
+   .from($info, 0.5, {top:350}, "final")
+   .to($panel2, 0.5, {top:-60}, "final")
+   .staggerFrom($list, 0.3, {autoAlpha:0, left:50}, 0.1, "+=0.2")
+   .from($orderNow, 0.5, {scale:0, autoAlpha:0, ease:Back.easeOut});
+
+
+function updateReps() {
+  reps++;
+}
+
+function updateStats() {
+}
+
+function reset() {
+  reps = 0;
+}
+
+function restart() {
+  TweenLite.to(restart, 0.4, {autoAlpha:1})
+}
+
+restart.onclick = function() {
+  reset();
+  TweenLite.set(restart, {autoAlpha:0})
+  tl.restart();
+}
+
+reset();
+        </script>
+    </body>
+</html>
